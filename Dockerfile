@@ -19,7 +19,7 @@ RUN set -x && \
     # Basic check it works.
     kubectl version --client
 
-RUN gem install krane
+RUN gem install krane -v 1.1.4
 
 # Clean up
 RUN apk del build-base
@@ -27,9 +27,4 @@ RUN apk del build-base
 COPY bin/deploy /bin/deploy
 RUN chmod +x /bin/deploy
 
-RUN mkdir /config/deploy
-COPY ./config/deploy/ /config/deploy/
-
 USER kubectl
-
-ENTRYPOINT ["bin/deploy"]
