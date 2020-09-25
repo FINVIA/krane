@@ -13,9 +13,6 @@ RUN set -x && \
     apk add --no-cache curl ca-certificates && \
     chmod +x /usr/local/bin/kubectl && \
     \
-    # Create non-root user (with a randomly chosen UID/GUI).
-    adduser kubectl -Du 2342 -h /config && \
-    \
     # Basic check it works.
     kubectl version --client
 
@@ -27,4 +24,4 @@ RUN apk del build-base
 COPY bin/deploy /bin/deploy
 RUN chmod +x /bin/deploy
 
-USER kubectl
+ENTRYPOINT ["/bin/deploy"]
