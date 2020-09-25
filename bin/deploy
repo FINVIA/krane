@@ -6,6 +6,4 @@ kubectl config set-credentials $CLUSTER_USER --token=$KUBERNETES_BEARER_TOKEN
 kubectl config set-context $CLUSTER_NAME --cluster=$CLUSTER_NAME --user=$CLUSTER_USER
 kubectl config use-context $CLUSTER_NAME
 kubectl config current-context
-echo "Deploying commit-$COMMIT_ID"
-echo "Env: $ENVIRONMENT"
-krane render -f ./config/deploy/$ENVIRONMENT --current-sha $COMMIT_ID | krane deploy -f ./config/deploy/$ENVIRONMENT/secrets.ejson --stdin $NAMESPACE $CLUSTER_NAME
+exec "$@"
