@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+set -e
 
 echo "Configure kubectl"
 kubectl config set-cluster $CLUSTER_NAME --server=$CLUSTER_SERVER --insecure-skip-tls-verify=true
@@ -6,4 +7,5 @@ kubectl config set-credentials $CLUSTER_USER --token=$KUBERNETES_BEARER_TOKEN
 kubectl config set-context $CLUSTER_NAME --cluster=$CLUSTER_NAME --user=$CLUSTER_USER
 kubectl config use-context $CLUSTER_NAME
 kubectl config current-context
+
 exec "$@"

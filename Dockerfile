@@ -23,3 +23,5 @@ RUN apk del build-base
 
 COPY bin/deploy /bin/deploy
 RUN chmod +x /bin/deploy
+
+ENTRYPOINT ["/bin/deploy"]
